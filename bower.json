@@ -1,0 +1,24 @@
+{
+  "name": "ScriptAutoRunner",
+  "version": "0.0.0",
+  "homepage": "https://github.com/nakajmg/ScriptAutoRunner",
+  "authors": [
+    "nakajmg <nakajima.jmg@gmail.com>"
+  ],
+  "description": "Injects Script into the any website it able to autorun as well.",
+  "main": "index.html",
+  "keywords": [
+    "ChromeExtension"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "vue": "1.0.0-alpha.4"
+  }
+}
