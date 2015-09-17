@@ -19,6 +19,7 @@
     "tests"
   ],
   "dependencies": {
-    "vue": "1.0.0-alpha.4"
+    "vue": "1.0.0-alpha.4",
+    "lodash": "~3.10.1"
   }
 }

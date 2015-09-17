@@ -1,1 +1,8 @@
-{}
+{
+  "devDependencies": {
+    "babel-core": "^5.8.24",
+    "browser-sync": "^2.9.3",
+    "gulp": "^3.9.0",
+    "gulp-plumber": "^1.0.1"
+  }
+}
