@@ -1,3 +1,10 @@
 [v-cloak] {
   display: none;
 }
+html, body {
+  background-color: #454851;
+  color: #F3D32F;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}

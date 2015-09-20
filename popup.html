@@ -8,30 +8,14 @@
     <link rel="stylesheet" href="css/popup.css" media="screen" title="no title" charset="utf-8">
   </head>
   <body>
-    <div id="app" v-cloak>
-      <button on-click="addScript">Add Script</button>
-      <ul>
-        <li v-for="script in scripts">
-          <input on-blur="save" type="checkbox" v-model="script.enable"><input type="text" v-model="script.name">
-          <select on-change="save" v-model="script.type">
-            <option name="type">external</option>
-            <option name="type">snippet</option>
-          </select>
-          <div v-if="script.type == 'external'">
-            <input on-blur="save" type="text" v-model="script.src">
-          </div>
-          <div v-if="script.type == 'snippet'">
-            <textarea on-keyup="save" v-model="script.code"></textarea>
-          </div>
-          <button on-click="moveUp($index)"><i class="fa fa-arrow-up"></i></button>
-          <button on-click="moveDown($index)"><i class="fa fa-arrow-down"></i></button>
-          <button on-click="removeScript($index)"><i class="fa fa-trash-o"></i></button>
+    <div id="app">
+      <ul class="sra-scripts">
+        <li class="sra-script" bind-class="{'sra-script--enable': script.enable}" v-for="script in scripts">
+          {{script.id}}
         </li>
       </ul>
     </div>
-    <script src="js/lib/lodash.min.js">
-    </script>
-    <script src="js/lib/vue.js"></script>
+    <script src="js/lib/vue.min.js"></script>
     <script src="js/popup.js"></script>
   </body>
 </html>

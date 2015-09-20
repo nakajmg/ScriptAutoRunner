@@ -1,0 +1,22 @@
+{
+  "manifest_version": 2,
+  "name": "ScriptAutoRunner",
+  "description": "Injects Script into the any website it able to autorun as well.",
+  "version": "0.0.1",
+  "background": {
+    "scripts": ["js/background.js"]
+  },
+  "content_scripts": [
+    {
+      "matches": ["\u003Call_urls\u003E"],
+      "js": ["js/content.js"]
+    }
+  ],
+  "options_page": "options.html",
+  "content_security_policy": "allow-scripts; script-src 'self' 'unsafe-eval'; object-src 'self'",
+  "browser_action": {
+    "default_icon": "img/icon.png",
+    "default_title": "SAR",
+    "default_popup": "popup.html"
+  }
+}
