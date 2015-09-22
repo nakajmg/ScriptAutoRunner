@@ -3,17 +3,33 @@
   <head>
     <meta charset="utf-8">
     <title>ScriptAutoRunner</title>
-    <link rel="stylesheet" href="css/font-awesome.min.css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="css/fontello-embedded.css" media="screen" title="no title" charset="utf-8">
     <link rel="stylesheet" href="css/base.css" media="screen" title="no title" charset="utf-8">
     <link rel="stylesheet" href="css/popup.css" media="screen" title="no title" charset="utf-8">
   </head>
   <body>
-    <div id="app">
-      <ul class="sra-scripts">
-        <li class="sra-script" bind-class="{'sra-script--enable': script.enable}" v-for="script in scripts">
-          {{script.id}}
-        </li>
-      </ul>
+    <div id="app" v-cloak v-bind:class="{'sra-power--off': !power}">
+      <div class="sra-header">
+        <span v-on:click="togglePower"><i class="icon-flash"></i></span>
+        <span>ScriptAutoRunner</span>
+      </div>
+      <div class="sra-main">
+        <ul class="sra-scripts">
+          <li v-show="count()" class="sra-noscript">
+            No Scripts.
+          </li>
+          <li class="sra-script" v-bind:class="{'sra-script--enable': script.enable}" v-for="script in scripts" v-show="isMatch(script.host)">
+            <div class="sra-script__main">
+              <span><i v-bind:class="{'icon-link': script.type=='external', 'icon-code': script.type=='snippet'}"></i></span>
+              <span>{{script.name}}</span>
+              <span><i v-on:click="toggle($index)" class="icon-plug"></i></span>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="sra-footer">
+        displayed only available Scripts on this host.
+      </div>
     </div>
     <script src="js/lib/vue.min.js"></script>
     <script src="js/popup.js"></script>

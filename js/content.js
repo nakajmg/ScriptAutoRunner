@@ -1,4 +1,6 @@
-chrome.runtime.sendMessage({method: "SARgetLocalStorage", key: "SAR"}, (response)=> {
+chrome.runtime.sendMessage({method: "SARsetHostName", hostname: location.hostname}, (response)=> {
+});
+chrome.runtime.sendMessage({method: "SARgetLocalStorage"}, (response)=> {
 
   function runScript(script) {
     var tag = document.createElement('script');
