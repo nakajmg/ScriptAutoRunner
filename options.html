@@ -3,58 +3,64 @@
   <head>
     <meta charset="utf-8">
     <title>ScriptAutoRunner</title>
-    <link rel="stylesheet" href="css/font-awesome.min.css" media="screen" title="no title" charset="utf-8">
+    <!-- <link rel="stylesheet" href="css/font-awesome.min.css" media="screen" title="no title" charset="utf-8"> -->
+    <link rel="stylesheet" href="css/fontello-embedded.css" media="screen" title="no title" charset="utf-8">
     <link rel="stylesheet" href="css/base.css" media="screen" title="no title" charset="utf-8">
     <link rel="stylesheet" href="css/options.css" media="screen" title="no title" charset="utf-8">
   </head>
   <body>
     <div class="sra-wrapper" id="app" v-cloak>
-      <div class="sra-power" bind-class="{'sra-power--off': !power}" on-click="toggleSwitch">
-        <i class="fa fa-bolt"></i>
+      <div class="sra-power" v-bind:class="{'sra-power--off': !power}" v-on:click="toggleSwitch">
+        <i class="icon-flash"></i>
       </div>
       <div class="sra-main">
         <div class="sra-btns">
           <div class="sra-btns__battery">
-            <i class="fa fa-battery-three-quarters"></i>
+            <i class="icon-battery"></i>
           </div>
           <div class="sra-btn src-btn--plus">
-            <i class="fa fa-plus"></i>
+            <i class="icon-plus"></i>
           </div>
-          <button class="sra-btn" on-click="addScript('snippet')">
-            <i class="fa fa-code"></i>
+          <button class="sra-btn" v-on:click="addScript('snippet')">
+            <i class="icon-code"></i>
           </button>
-          <button class="sra-btn" on-click="addScript('external')">
-            <i class="fa fa-link"></i>
+          <button class="sra-btn" v-on:click="addScript('external')">
+            <i class="icon-link"></i>
           </button>
         </div>
         <ul class="sra-scripts">
-          <li class="sra-script" bind-class="{'sra-script--enable': script.enable}" v-for="script in scripts">
-            <div class="sra-script__plug" on-click="togglePower($index)"></div>
-            <input on-change="save" class="sra-script__check" bind-id="'enable' + script.id" class="sra-script__enable" on-blur="save" type="checkbox" v-model="script.enable">
-            <label bind-for="'enable' + script.id"><i class="fa fa-power-off"></i></label>
-            
-            <input class="sra-script__name" type="text" v-model="script.name">
-            
-          <!---
-            <input class="sra-script__radio" type="radio" bind-name="'type' + script.id" bind-id="'type' + script.id + 'snippet'" v-model="script.type" value="snippet" on-change="save">
-            <label class="sra-script__type" bind-for="'type' + script.id + 'snippet'"><i class="fa fa-code"></i></label>
-            <input class="sra-script__radio" type="radio" bind-name="'type' + script.id" bind-id="'type' + script.id + 'external'" v-model="script.type" value="external" on-change="save">
-            <label class="sra-script__type" bind-for="'type' + script.id + 'external'"><i class="fa fa-link"></i></label>
-          -->
-            
-            <div class="sra-script__snippet" v-if="script.type == 'snippet'">
-              <textarea on-keyup="save" v-model="script.code"></textarea>
+          <li class="sra-script" v-bind:class="{'sra-script--enable': script.enable}" v-for="script in scripts">
+            <div class="sra-script__plug" v-on:click="togglePower($index)"></div>
+            <div class="sra-script__box">
+              
+              <div class="sra-script__content">
+                <div class="sra-flex sra-flex--head">
+                  <input class="sra-script__name" type="text" v-model="script.name">
+                  <div class="sra-script__btns">
+                    <button class="sra-script__btn" v-on:click="moveUp($index)"><i class="icon-up-circled"></i></button>
+                    <button class="sra-script__btn" v-on:click="moveDown($index)"><i class="icon-down-circled"></i></button>
+                  </div>
+                </div>
+                <div class="sra-flex sra-flex--content">
+                  <div class="sra-script__type">
+                    <i v-bind:class="{'icon-code': script.type == 'snippet', 'icon-link': script.type == 'external'}"></i>
+                  </div>
+                  <div class="sra-script__snippet" v-if="script.type == 'snippet'">
+                    <textarea v-on:keyup="save" v-model="script.code" placeholder="Write your own code here."></textarea>
+                  </div>
+                  <div class="sra-script__external" v-if="script.type == 'external'">
+                    <input v-on:blur="save" type="text" v-model="script.src" placeholder="Set JS file URL. e.g. //code.jquery.com/jquery-2.1.4.min.js">
+                  </div>
+                </div>
+                <div class="sra-flex sra-flex--foot">
+                  <i class="icon-cloud-flash"></i>
+                  <input class="sra-script__host" v-model="script.host" v-on:blur="save" placeholder="Target hostname. [default: target to all site. ]">
+                  <button class="sra-script__btn remove" v-on:click="removeScript($index)"><i class="icon-trash"></i></button>
+                </div>
+              </div>
             </div>
-            <div class="sra-script__external" v-if="script.type == 'external'">
-              <input on-blur="save" type="text" v-model="script.src">
-            </div>
-            
-            <input class="sra-script__host" v-model="script.host" on-blur="save">
-            
             <div>
-              <button class="sra-script__btn" on-click="moveUp($index)"><i class="fa fa-arrow-up"></i></button>
-              <button class="sra-script__btn" on-click="moveDown($index)"><i class="fa fa-arrow-down"></i></button>
-              <button class="sra-script__btn remove" on-click="removeScript($index)"><i class="fa fa-trash-o"></i></button>
+              
             </div>
           </li>
         </ul>

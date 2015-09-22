@@ -1,12 +1,12 @@
 (function() {
   var DEFAULT_SCRIPT = {
     id: null,
-    enable: true,
-    name: 'script',
+    enable: false,
+    name: 'Script',
     type: 'snippet',
     src: '',
     code: '',
-    host: 'any'
+    host: ''
   };
   
   vm = new Vue({
@@ -18,6 +18,7 @@
     methods: {
       toggleSwitch() {
         this.power = !this.power;
+        this.save();
       },
       addScript(type) {
         var script = _.extend({}, DEFAULT_SCRIPT);
@@ -37,7 +38,9 @@
         return num + 1;
       },
       removeScript(index) {
-        this.scripts.$remove(index);
+        if (window.confirm('Are you sure you want to delete?')) {
+          this.scripts.$remove(index);
+        }
       },
       moveUp(index) {
         var script, temp;
@@ -60,29 +63,31 @@
       togglePower(index) {
         var script = this.scripts[index];
         script.enable = !script.enable;
+        this.save();
       },
       _save() {
         return _.debounce(function() {
-          this._setStorage(this.scripts);
+          this._setStorage(this.$data);
         }.bind(this), 300);
       },
       onKeyup() {
         this.save();
       },
       onBlur() {
-        this._setStorage(this.scripts);
+        this.save();
       },
       _setStorage(data) {
         window.localStorage.setItem('SRA', JSON.stringify(data));
       },
       _loadScripts() {
         var data =  JSON.parse(window.localStorage.getItem('SRA'));
-        this.$set('scripts', data);
+        this.$set('power', data.power);
+        this.$set('scripts', data.scripts);
       },
       _init() {
         var data = window.localStorage.getItem('SRA');
         if (!data) {
-          this._setStorage([DEFAULT_SCRIPT]);
+          this._setStorage({power: true, scripts: []});
         }
       }
     },
@@ -93,7 +98,7 @@
     },
     ready() {
       this.$watch('scripts', function(val, oldVal) {
-        this._setStorage(this.scripts);
+        this._setStorage(this.$data);
       });
     }
   });

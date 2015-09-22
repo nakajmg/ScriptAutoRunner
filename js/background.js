@@ -1,10 +1,17 @@
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+  var data = localStorage.getItem('SRA');
+  
   if (request.method === 'SARgetLocalStorage') {
-    var scripts = localStorage.getItem('SRA');
-    console.log(scripts);
-    sendResponse({scripts: scripts});
+    if (data) {
+      sendResponse({data: JSON.parse(data)});
+    }
+    
   }
   else {
-    sendResponse({scripts: []});
+    sendResponse({data: {
+        power: true,
+        scripts: []
+      }
+    });
   }
 });

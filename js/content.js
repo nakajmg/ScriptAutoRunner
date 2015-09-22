@@ -11,12 +11,36 @@ chrome.runtime.sendMessage({method: "SARgetLocalStorage", key: "SAR"}, (response
     }
     document.body.appendChild(tag);
   }
-  
-  var scripts = JSON.parse(response.scripts);
-  
-  scripts.forEach((script) =>{
-    if (script.enable) {
-      runScript(script);
+
+  function isMatch(host) {
+    if (host === '' || host === 'any') {
+      return true;
     }
-  });
+    
+    var hostname = window.location.hostname;
+    var hosts, match;
+    if (host.indexOf(',') !== -1) {
+      hosts = host.split(',');
+      match = hosts.some((_host) => {
+        return hostname.indexOf(_host.trim()) !== -1;
+      });
+    }
+    else {
+      match = hostname.indexOf(host) !== -1;
+    }
+    return match;
+  }
+  
+  var data = response.data;
+  
+  if (data.power) {
+    data.scripts.forEach((script) => {
+      if (script.enable) {
+        if(isMatch(script.host)) {
+          runScript(script);
+        }
+      }
+    });
+  }
+  
 });
