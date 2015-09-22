@@ -8,6 +8,8 @@ Injects to any Script into a Website. It can be autorun as well.
 
 Download & install from Chrome Webstore.
 
+[Download](https://chrome.google.com/webstore/detail/scriptautorunner/gpgjofmpmjjopcogjgdldidobhmjmdbm)
+
 ## Feature
 
 * Injects external JavaScript library by URL 
