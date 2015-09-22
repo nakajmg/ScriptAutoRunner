@@ -37,8 +37,8 @@
                 <div class="sra-flex sra-flex--head">
                   <input class="sra-script__name" type="text" v-model="script.name">
                   <div class="sra-script__btns">
-                    <button class="sra-script__btn" v-on:click="moveUp($index)"><i class="icon-up-circled"></i></button>
                     <button class="sra-script__btn" v-on:click="moveDown($index)"><i class="icon-down-circled"></i></button>
+                    <button class="sra-script__btn" v-on:click="moveUp($index)"><i class="icon-up-circled"></i></button>
                   </div>
                 </div>
                 <div class="sra-flex sra-flex--content">
@@ -49,12 +49,12 @@
                     <textarea v-on:keyup="save" v-model="script.code" placeholder="Write your own code here."></textarea>
                   </div>
                   <div class="sra-script__external" v-if="script.type == 'external'">
-                    <input v-on:blur="save" type="text" v-model="script.src" placeholder="Set JS file URL. e.g. //code.jquery.com/jquery-2.1.4.min.js">
+                    <input v-on:blur="save" type="text" v-model="script.src" placeholder="Set JS file's URL. (e.g. //code.jquery.com/jquery-2.1.4.min.js)">
                   </div>
                 </div>
                 <div class="sra-flex sra-flex--foot">
                   <i class="icon-cloud-flash"></i>
-                  <input class="sra-script__host" v-model="script.host" v-on:blur="save" placeholder="Target hostname. [default: target to all site. ]">
+                  <input class="sra-script__host" v-model="script.host" v-on:blur="save" placeholder="Target hostname. By default, target to all host.">
                   <button class="sra-script__btn remove" v-on:click="removeScript($index)"><i class="icon-trash"></i></button>
                 </div>
               </div>
