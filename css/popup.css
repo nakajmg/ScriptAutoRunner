@@ -25,6 +25,7 @@ html, body {
   align-items: center;
 }
   .sra-header span:nth-of-type(1) {
+    cursor: pointer;
     font-size: 16px;
     width: 20px;
     line-height: 20px;
@@ -35,10 +36,23 @@ html, body {
     border-right: 1px solid #2E2F31;
     border-bottom: 1px solid #2E2F31;
   }
+  .sra-header span:nth-of-type(1):hover {
+    opacity: .8;
+  }
   .sra-header span:nth-of-type(2) {
     flex-grow: 1;
     margin-left: 10px;
   }
+  
+  .sra-header span:nth-of-type(3) {
+    cursor: pointer;
+    font-size: 18px;
+    margin-right: 10px;
+  }
+  .sra-header span:nth-of-type(3):hover {
+    opacity: .8;
+  }
+  
   .sra-power--off .sra-header {
     color: #F3D32F;
     background-color: #454851;
@@ -53,6 +67,7 @@ html, body {
   font-size: 10px;
   padding: 10px 0 10px;
   opacity: 0.8;
+  padding-right: 10px;
 }
 
 .sra-noscript {
@@ -91,4 +106,12 @@ html, body {
   .sra-script__main span:nth-of-type(3) {
     font-size: 20px;
     padding-right: 3px;
+    cursor: pointer;
+  }
+  .sra-script__main span:nth-of-type(3):hover {
+    color: #F3D32F;
+  }
+  
+  .sra-script--enable .sra-script__main span:nth-of-type(3):hover {
+    opacity: .8;
   }

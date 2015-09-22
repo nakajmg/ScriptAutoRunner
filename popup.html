@@ -12,11 +12,12 @@
       <div class="sra-header">
         <span v-on:click="togglePower"><i class="icon-flash"></i></span>
         <span>ScriptAutoRunner</span>
+        <span v-on:click="openOption"><i class="icon-cog"></i></span>
       </div>
       <div class="sra-main">
         <ul class="sra-scripts">
           <li v-show="count()" class="sra-noscript">
-            No Scripts.
+            No available Scripts on this host.
           </li>
           <li class="sra-script" v-bind:class="{'sra-script--enable': script.enable}" v-for="script in scripts" v-show="isMatch(script.host)">
             <div class="sra-script__main">
@@ -28,7 +29,7 @@
         </ul>
       </div>
       <div class="sra-footer">
-        displayed only available Scripts on this host.
+        Displayed only available Scripts on this host.
       </div>
     </div>
     <script src="js/lib/vue.min.js"></script>

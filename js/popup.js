@@ -56,6 +56,13 @@ chrome.runtime.sendMessage({method: "SARgetHostName"}, (response)=> {
             return this.isMatch(script.host);
           });
           return matched.length === 0 ? true : false;
+        },
+        openOption() {
+          var fileName = 'options.html'
+          var url = chrome.extension.getURL( fileName );
+          chrome.tabs.create({
+            url: url
+          });
         }
       }
     });

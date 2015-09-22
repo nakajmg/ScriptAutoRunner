@@ -127,7 +127,7 @@
 .sra-script {
   position: relative;
   border-radius: 1px;
-  width: 600px;
+  width: 660px;
   padding: 5px 10px;
   margin-bottom: 10px;
   margin-top: 10px;
@@ -180,7 +180,7 @@
     border-bottom-right-radius: 15%;
     display: inline-block;
     font: normal normal normal 14px/1 FontAwesome;
-    font-size: inherit;
+    font-size: 18px;
     text-rendering: auto;
     -webkit-font-smoothing: antialiased;
     line-height: 35px;
@@ -220,20 +220,12 @@
     z-index: 2;
   }
   
-  .sra-script__box {
-    /*display: flex;*/
-  }
-  .sra-script__content {
-    /*flex-grow: 1;*/
-  }
-  
   .sra-script__name {
     border: none;
     border-radius: 1px;
     padding: 0px;
     background-color: transparent;
     font-size: 16px;
-    /*margin-bottom: 10px;*/
     color: inherit;
     width: 100%;
     box-sizing: border-box;
@@ -298,6 +290,9 @@
     color: inherit;
     border: 1px solid currentColor;
     display: block;
+    font-size: 14px;
+    line-height: 1.2;
+    font-family: Consolas, 'Courier New', Courier, Monaco, monospace;
   }
   
   .sra-script__btn {
