@@ -3,13 +3,33 @@
   <head>
     <meta charset="utf-8">
     <title>ScriptAutoRunner</title>
-    <!-- <link rel="stylesheet" href="css/font-awesome.min.css" media="screen" title="no title" charset="utf-8"> -->
     <link rel="stylesheet" href="css/fontello-embedded.css" media="screen" title="no title" charset="utf-8">
     <link rel="stylesheet" href="css/base.css" media="screen" title="no title" charset="utf-8">
     <link rel="stylesheet" href="css/options.css" media="screen" title="no title" charset="utf-8">
   </head>
   <body>
     <div class="sra-wrapper" id="app" v-cloak>
+      <div class="sra-setting">
+        <i class="icon-cog" v-on:click="toggleSetting"></i>
+      </div>
+      <div class="sra-setting__content" v-el:setting>
+        <div class="sra-setting__container">
+          <div class="sra-setting__body">
+            <div class="sra-setting__header">
+              <i class="icon-cog"></i>
+              <span>Options</span>
+              <span v-on:click="toggleSetting"><i class="icon-cancel-circled"></i></span>
+            </div>
+            <div class="sra-setting__main">
+              <div class="sra-flex">
+                <span><i class="icon-cloud-flash"></i></span>
+                <span> Exclude hostname</span>
+              </div>
+              <textarea v-on:keyup="save" v-model="options .exclude" placeholder="Exclude hostnames, split by comma"></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
       <div class="sra-power" v-bind:class="{'sra-power--off': !power}" v-on:click="toggleSwitch">
         <i class="icon-flash"></i>
       </div>

@@ -8,12 +8,19 @@
     code: '',
     host: ''
   };
+
+  var DEFAULT_OPTIONS = {
+    exclude: ''
+  };
   
-  vm = new Vue({
+  var storageKey = 'SAR';
+  
+  var vm = new Vue({
     el: '#app',
     data: {
       power: true,
-      scripts: []
+      scripts: [],
+      options: {}
     },
     methods: {
       toggleSwitch() {
@@ -77,17 +84,44 @@
         this.save();
       },
       _setStorage(data) {
-        window.localStorage.setItem('SRA', JSON.stringify(data));
+        window.localStorage.setItem(storageKey, JSON.stringify(data));
       },
       _loadScripts() {
-        var data =  JSON.parse(window.localStorage.getItem('SRA'));
+        var data =  JSON.parse(window.localStorage.getItem(storageKey));
         this.$set('power', data.power);
         this.$set('scripts', data.scripts);
+        if (!data.options) {
+          this.$set('options', DEFAULT_OPTIONS);
+        }
+        else {
+          this.$set('options', data.options);
+        }
       },
       _init() {
         var data = window.localStorage.getItem('SRA');
-        if (!data) {
-          this._setStorage({power: true, scripts: []});
+        var newData = window.localStorage.getItem(storageKey);
+        
+        if (!newData) {
+          if (data) {
+            this._setStorage(JSON.parse(data));
+            window.localStorage.removeItem('SRA');
+          }
+          else {
+            this._setStorage({power: true, scripts: [], options: DEFAULT_OPTIONS});
+          }
+        }
+        else {
+          if (data) {
+            window.localStorage.removeItem('SRA');
+          }
+        }
+      },
+      toggleSetting() {
+        if (_.includes(this.$els.setting.classList, 'show')) {
+          this.$els.setting.classList.remove('show');
+        }
+        else {
+          this.$els.setting.classList.add('show');
         }
       }
     },

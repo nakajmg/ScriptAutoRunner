@@ -16,8 +16,11 @@
       </div>
       <div class="sra-main">
         <ul class="sra-scripts">
-          <li v-show="count()" class="sra-noscript">
+          <li v-show="count() && !isEcludeHost()" class="sra-noscript">
             No available Scripts on this host.
+          </li>
+          <li v-show="isExcludeHost()" class="sra-noscript">
+            This host is excluded.
           </li>
           <li class="sra-script" v-bind:class="{'sra-script--enable': script.enable}" v-for="script in scripts" v-show="isMatch(script.host)">
             <div class="sra-script__main">
@@ -31,6 +34,7 @@
       <div class="sra-footer">
         Displayed only available Scripts on this host.
       </div>
+      {{example}}
     </div>
     <script src="js/lib/vue.min.js"></script>
     <script src="js/popup.js"></script>
