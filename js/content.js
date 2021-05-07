@@ -12,20 +12,36 @@ chrome.runtime.sendMessage({method: "SARgetLocalStorage"}, (response) => {
     document.body.appendChild(tag);
   }
 
+  const cleanHost = (host) => {
+    host = host.trim()
+    host = host.replace(/^https:\/\//g, "");
+    host = host.replace(/^http:\/\//g, "");
+    // host = host.replace(/\/.*/g, "");
+    return host;
+  };
+
+  const cleanHosts = (hosts) => {
+    for (let i = 0; i < hosts.length; i++) {
+      hosts[i] = cleanHost(hosts[i])
+    }
+    return hosts;
+  };
+
   function isMatch(host) {
-    if (host === '' || host === 'any') {
+    if (host === "" || host === "any") {
       return true;
     }
-    
-    var hostname = window.location.hostname;
+
+    var hostname = cleanHost(window.location.href);
     var hosts, match;
-    if (host.indexOf(',') !== -1) {
-      hosts = host.split(',');
+    
+    if (host.indexOf(",") !== -1) {
+      hosts = cleanHosts(host.split(","));
       match = hosts.some((_host) => {
         return hostname.indexOf(_host.trim()) !== -1;
       });
-    }
-    else {
+    } else {
+      host = cleanHost(host);
       match = hostname.indexOf(host) !== -1;
     }
     return match;
