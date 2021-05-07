@@ -1,10 +1,3 @@
----
-tags: [Import-68a7]
-title: ScriptAutoRunner
-created: '2020-05-08T08:14:38.997Z'
-modified: '2021-05-07T08:56:07.646Z'
----
-
 # ScriptAutoRunner
 
 Injects to any Script into a Website. It can be autorun as well.
