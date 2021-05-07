@@ -1,3 +1,10 @@
+---
+tags: [Import-68a7]
+title: ScriptAutoRunner
+created: '2020-05-08T08:14:38.997Z'
+modified: '2021-05-07T08:56:07.646Z'
+---
+
 # ScriptAutoRunner
 
 Injects to any Script into a Website. It can be autorun as well.
@@ -44,9 +51,17 @@ You can manage executed Scripts by hostname.
 
 Expected value is String or Array(split by comma).
 
+
 ```
 github.io, github.com
 ```
+
+#### Deep-linking hostname
+Run script with specific *path*
+```
+github.com/notifications, github.com/new
+```
+
 
 
 ### Temporary disable
