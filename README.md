@@ -44,9 +44,17 @@ You can manage executed Scripts by hostname.
 
 Expected value is String or Array(split by comma).
 
+
 ```
 github.io, github.com
 ```
+
+#### Deep-linking hostname
+Run script with specific *path*
+```
+github.com/notifications, github.com/new
+```
+
 
 
 ### Temporary disable
