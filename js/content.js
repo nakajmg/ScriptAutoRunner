@@ -25,10 +25,8 @@ chrome.runtime.sendMessage({method: "SARgetLocalStorage"}, (response) => {
         return hostname === _host.trim();
       });
     }
-    else {
-      match = hostname === host;
-    }
-    return match;
+
+    return hostname === host;
   }
   
   function isExcludeHost(host) {
