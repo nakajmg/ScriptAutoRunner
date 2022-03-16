@@ -39,15 +39,12 @@ chrome.runtime.sendMessage({method: "SARgetLocalStorage"}, (response) => {
     if (host.indexOf(',') !== -1) {
       hosts = host.split(',');
       match = hosts.some((_host) => {
-        return hostname.indexOf(_host.trim()) !== -1;
+        return hostname === _host.trim();
       });
       
     }
-    else {
-      match = hostname.indexOf(host) !== -1;
-    }
-    
-    return match;
+
+    return hostname === host;
   }
   
   var data = response.data;
