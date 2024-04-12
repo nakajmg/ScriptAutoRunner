@@ -6,7 +6,8 @@
     type: 'snippet',
     src: '',
     code: '',
-    host: ''
+    host: '',
+    regex: false
   };
 
   var DEFAULT_OPTIONS = {
