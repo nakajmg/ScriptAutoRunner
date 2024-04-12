@@ -12,7 +12,7 @@ chrome.runtime.sendMessage({method: "SARgetLocalStorage"}, (response) => {
     document.body.appendChild(tag);
   }
 
-  function isMatch(host) {
+  function isMatch(host, regex) {
     if (host === '' || host === 'any') {
       return true;
     }
@@ -22,11 +22,27 @@ chrome.runtime.sendMessage({method: "SARgetLocalStorage"}, (response) => {
     if (host.indexOf(',') !== -1) {
       hosts = host.split(',');
       match = hosts.some((_host) => {
-        return hostname.indexOf(_host.trim()) !== -1;
+        let check = false;
+        if (regex) {
+          var hostTrim = _host.trim();
+          const regexExp = `/${hostTrim}/g`;
+          check = hostname.match(regexExp);
+        }
+        else {
+          check = hostname.indexOf(_host.trim()) !== -1;
+        }
+        return check;
       });
     }
     else {
-      match = hostname.indexOf(host) !== -1;
+      var hostTrim = host.trim();
+      if (regex) {
+        const regexExp = `/${hostTrim}/g`;
+        match = hostname.match(regexExp);
+      }
+      else {
+        match = hostname.indexOf(hostTrim) !== -1;
+      }
     }
     return match;
   }
@@ -59,11 +75,10 @@ chrome.runtime.sendMessage({method: "SARgetLocalStorage"}, (response) => {
       return false;
     }
   }
-  
   if (data.power) {
     data.scripts.forEach((script) => {
       if (script.enable) {
-        if(isMatch(script.host)) {
+        if(isMatch(script.host, script.regex)) {
           runScript(script);
         }
       }

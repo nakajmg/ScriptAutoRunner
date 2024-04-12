@@ -74,7 +74,16 @@
                 </div>
                 <div class="sra-flex sra-flex--foot">
                   <i class="icon-cloud-flash"></i>
-                  <input class="sra-script__host" v-model="script.host" v-on:blur="save" placeholder="Target hostname. By default, target to all host.">
+                  <div v-bind:class="{'is-regex': script.regex, 'input-container': true}">
+                    <span class="regex-special">\</span>
+                    <input class="sra-script__host" v-model="script.host" v-on:blur="save" placeholder="Target hostname. By default, target to all host.">
+                    <span class="regex-special">\g</span>
+                  </div>
+                  <label class="sra-script__regex" for="regex-input">
+                    <input type="checkbox" id="regex-input" v-model="script.regex" @change="save">
+                    <div class="checkbox"></div>
+                    Use Regex
+                  </label>
                   <button class="sra-script__btn remove" v-on:click="removeScript($index)"><i class="icon-trash"></i></button>
                 </div>
               </div>
