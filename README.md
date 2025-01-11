@@ -1,3 +1,5 @@
+# ⚠️ This extension relies on features that are no longer supported under [Manifest V3](https://developer.chrome.com/docs/extensions/develop/migrate/what-is-mv3). As a result, it can no longer be used or maintained. Thank you for using this extension for such a long time👋
+
 # ScriptAutoRunner
 
 Injects to any Script into a Website. It can be autorun as well.
